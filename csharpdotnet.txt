@@ -1,0 +1,46 @@
+>>>>>>>>>>>>>>>>>>>> CSharp Dot Net Tutorial <<<<<<<<<<<<<<<<<<<<<<
+
+1. Code first approach 
+
+* install some entity framwork 1. EFcore.sqlserver 2. EFcore.tools 3. EFcore.tools.dotnet
+* create context folder and model class like employee
+* create another file in same folder named like EmployeeDbContext that will inherit to dbcontext class
+this class will contain all the model's information which are responsible for create the tables in the databae
+and dbset like  DbSet<Employee> Employees { get; set; }  
+* go to appsetting.json file and create connection string like this
+"ConnectionStrings": {  
+    "myconn": "server=ABC\\SQLEXPRESS2012; database=EmployeeDB;Trusted_Connection=True;"  
+  } 
+To use this connection string, first, we will change the ConfigureServices method in Startup.cs class as follows. 
+services.AddMvc();  
+    services.AddDbContext<EmployeeDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("myconn")));
+* open package manager console from tools menu and type "add-migration migrationname"... and you will see migration folder
+with and same name that you have given...
+* again type "update-database". if you have multiple migration than we should type "update-migration migrationanme" 
+
+>>>>>>>>>> Now, let's modify the Employee model and add a new property as Salary
+* first added new property to model class
+* this time we have given the name of migration as 'addedsalary'."add-migration addedsalary"
+* and same for update "add-migration addedsalary"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
